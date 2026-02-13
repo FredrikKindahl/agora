@@ -81,7 +81,7 @@ GAP: 44% - The people's will was ignored.
 ### Local Development
 ```bash
 # Clone the repository
-git clone https://github.com/[your-username]/agora.git
+git clone https://github.com/FredrikKindahl/agora.git
 cd agora
 
 # Open in browser
@@ -95,7 +95,7 @@ python -m http.server 8000
 1. Push this repository to GitHub
 2. Go to Settings → Pages
 3. Source: Deploy from branch `main`
-4. Your site will be live at `https://[username].github.io/agora`
+4. Your site will be live at `https://FredrikKindahl.github.io/agora`
 
 ## 🤝 Contributing
 
@@ -111,7 +111,7 @@ python -m http.server 8000
 ### How to Contribute
 
 1. **Read** [CONTRIBUTING.md](CONTRIBUTING.md) (coming soon)
-2. **Check** [Issues](https://github.com/[username]/agora/issues) for tasks
+2. **Check** [Issues](https://github.com/FredrikKindahl/agora/issues) for tasks
 3. **Fork** the repository
 4. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
 5. **Commit** your changes (`git commit -m 'Add amazing feature'`)

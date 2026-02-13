@@ -9,7 +9,7 @@ AGORA exists because of people who believe in transparent, accountable democracy
 - Initial codebase  
 - Founded: February 13, 2026
 
-**Fredrik Kindahl**  
+**Fredrik Kindahl** (@FredrikKindahl)  
 - Project Lead & Community Builder  
 - Vision & Direction  
 - Founded: February 13, 2026

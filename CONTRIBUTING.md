@@ -112,7 +112,7 @@ Then open a Pull Request on GitHub with:
 Found a bug? Help us fix it!
 
 **Before reporting:**
-1. Check if it's already reported in [Issues](https://github.com/[username]/agora/issues)
+1. Check if it's already reported in [Issues](https://github.com/FredrikKindahl/agora/issues)
 2. Try to reproduce it consistently
 3. Note your browser/OS version
 
@@ -157,8 +157,8 @@ Help make AGORA accessible globally!
 
 ## 🤔 Questions?
 
-- **General questions**: Use [GitHub Discussions](https://github.com/[username]/agora/discussions)
-- **Bug reports**: Open an [Issue](https://github.com/[username]/agora/issues)
+- **General questions**: Use [GitHub Discussions](https://github.com/FredrikKindahl/agora/discussions)
+- **Bug reports**: Open an [Issue](https://github.com/FredrikKindahl/agora/issues)
 - **Security issues**: Email [security contact] (don't post publicly)
 - **Other**: Reach out to maintainers
 
