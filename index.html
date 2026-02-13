@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGORA - The Global Voice Gap Project</title>
+    <meta name="description" content="Making the distance between people's will and political action impossible to ignore.">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Public+Sans:wght@300;400;600;700&display=swap');
+        
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-card: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent-cyan: #00d9ff;
+            --accent-red: #ff3366;
+            --accent-green: #00ff88;
+            --accent-yellow: #ffcc00;
+            --gap-color: #ff3366;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Public Sans', -apple-system, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Background grid effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Header */
+        header {
+            padding: 3rem 0 1rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 4rem;
+        }
+        
+        .logo {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 4rem;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+            animation: fadeInDown 0.8s ease-out;
+        }
+        
+        .tagline {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+            font-weight: 300;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+        
+        /* Hero Section */
+        .hero {
+            margin: 4rem 0 6rem;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+        
+        .hero h1 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 3rem;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            max-width: 900px;
+        }
+        
+        .hero h1 .highlight {
+            color: var(--accent-cyan);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+        
+        /* Demo Section */
+        .demo-section {
+            background: var(--bg-card);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            margin: 4rem 0;
+            border-radius: 4px;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+        
+        .demo-section h2 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--accent-cyan);
+        }
+        
+        .demo-subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .question-box {
+            background: rgba(0, 217, 255, 0.05);
+            border-left: 4px solid var(--accent-cyan);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        
+        .vote-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .vote-option {
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .vote-option:hover {
+            border-color: var(--accent-cyan);
+            background: rgba(0, 217, 255, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .vote-option.selected {
+            border-color: var(--accent-green);
+            background: rgba(0, 255, 136, 0.1);
+        }
+        
+        .vote-option h3 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .vote-option p {
+            color: var(--text-secondary);
+        }
+        
+        /* Results */
+        .results {
+            margin-top: 3rem;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .results.show {
+            opacity: 1;
+        }
+        
+        .result-item {
+            margin: 2rem 0;
+        }
+        
+        .result-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .result-label .percentage {
+            font-size: 1.5rem;
+            font-family: 'Archivo Black', sans-serif;
+        }
+        
+        .result-bar {
+            height: 60px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+        
+        .result-fill {
+            height: 100%;
+            transition: width 1s ease-out;
+            display: flex;
+            align-items: center;
+            padding: 0 1rem;
+            font-weight: 700;
+        }
+        
+        .result-fill.people {
+            background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan));
+        }
+        
+        .result-fill.parliament {
+            background: linear-gradient(90deg, var(--accent-red), #ff6600);
+        }
+        
+        /* Gap Visualization */
+        .gap-alert {
+            background: linear-gradient(135deg, rgba(255, 51, 102, 0.2), rgba(255, 51, 102, 0.05));
+            border: 2px solid var(--gap-color);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .gap-alert h3 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 2.5rem;
+            color: var(--gap-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .gap-alert p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+        
+        .feature {
+            background: var(--bg-card);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 4px;
+            animation: fadeInUp 0.8s ease-out both;
+        }
+        
+        .feature:nth-child(1) { animation-delay: 0.8s; }
+        .feature:nth-child(2) { animation-delay: 0.9s; }
+        .feature:nth-child(3) { animation-delay: 1s; }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature h3 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-cyan);
+        }
+        
+        .feature p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        
+        /* Vision */
+        .vision {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(0, 255, 136, 0.1));
+            border: 2px solid var(--accent-cyan);
+            padding: 3rem;
+            margin: 4rem 0;
+            border-radius: 4px;
+        }
+        
+        .vision h2 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .vision p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        
+        /* CTA */
+        .cta {
+            text-align: center;
+            margin: 4rem 0;
+            padding: 3rem 0;
+        }
+        
+        .cta h2 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border: 2px solid;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'Public Sans', sans-serif;
+            border-radius: 4px;
+        }
+        
+        .btn-primary {
+            background: var(--accent-cyan);
+            color: var(--bg-dark);
+            border-color: var(--accent-cyan);
+        }
+        
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--accent-cyan);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .btn-secondary:hover {
+            border-color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        footer {
+            border-top: 2px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem 0;
+            margin-top: 6rem;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+        
+        footer p {
+            margin: 0.5rem 0;
+        }
+        
+        footer a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .vote-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .demo-section {
+                padding: 2rem 1.5rem;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">AGORA</div>
+            <div class="tagline">The Global Voice Gap Project</div>
+        </header>
+        
+        <section class="hero">
+            <h1>
+                Making the distance between <span class="highlight">people's will</span> and 
+                <span class="highlight">political action</span> impossible to ignore.
+            </h1>
+            <p>
+                A transparent, decentralized platform where anyone can vote on policy questions, 
+                see real-time results globally, and compare them directly to how their actual 
+                representatives vote. The gap becomes visible, measurable, and undeniable.
+            </p>
+        </section>
+        
+        <section class="demo-section">
+            <h2>Se hur det fungerar</h2>
+            <p class="demo-subtitle">Detta är en demo med fiktiv data för att visa konceptet:</p>
+            
+            <div class="question-box">
+                Ska Sverige återställa våtmarker för att motverka klimatförändringar och bevara biologisk mångfald?
+            </div>
+            
+            <div class="vote-container">
+                <div class="vote-option" data-vote="yes">
+                    <h3>✓ JA</h3>
+                    <p>Återställ våtmarkerna</p>
+                </div>
+                <div class="vote-option" data-vote="no">
+                    <h3>✗ NEJ</h3>
+                    <p>Behåll nuvarande status</p>
+                </div>
+            </div>
+            
+            <div class="results" id="results">
+                <div class="result-item">
+                    <div class="result-label">
+                        <span>FOLKETS RÖST</span>
+                        <span class="percentage">78%</span>
+                    </div>
+                    <div class="result-bar">
+                        <div class="result-fill people" style="width: 0%" id="people-bar">
+                            78% för återställning
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="result-item">
+                    <div class="result-label">
+                        <span>RIKSDAGENS BESLUT</span>
+                        <span class="percentage">34%</span>
+                    </div>
+                    <div class="result-bar">
+                        <div class="result-fill parliament" style="width: 0%" id="parliament-bar">
+                            34% röstade för
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gap-alert">
+                    <h3>GAP: 44%</h3>
+                    <p>Folkets vilja ignorerades. Detta måste bli synligt.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="features">
+            <div class="feature">
+                <div class="feature-icon">🌍</div>
+                <h3>Global & Transparent</h3>
+                <p>
+                    Öppen källkod som alla kan granska. Decentraliserad för att motstå censur. 
+                    Ingen kan stänga av den eller manipulera resultaten.
+                </p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">📊</div>
+                <h3>Visualisera Gapet</h3>
+                <p>
+                    Se direkt hur dina representanter röstar jämfört med vad folket vill. 
+                    Historisk data visar mönster över tid.
+                </p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">🔓</div>
+                <h3>FOSS & Decentraliserad</h3>
+                <p>
+                    Helt öppen källkod (GPL v3). Ingen äger den. Fungerar i diktaturer. 
+                    Community-driven utveckling.
+                </p>
+            </div>
+        </section>
+        
+        <section class="vision">
+            <h2>Visionen</h2>
+            <p>
+                Demokrati bygger på att representanter lyssnar på folket. Men när gapet mellan 
+                vad folk vill och vad politiker gör är osynligt, försvinner ansvaret.
+            </p>
+            <p>
+                AGORA gör detta gap synligt. Inte för att skapa konflikt, utan för att skapa 
+                ansvarsskyldighet. När alla kan se skillnaden mellan folkvilja och faktisk 
+                politik blir det omöjligt att ignorera.
+            </p>
+            <p>
+                Detta är ett verktyg för demokratisk empowerment. För aktivister. För journalister. 
+                För medborgare som vill ha sin röst hörd. För en värld där makthavare faktiskt 
+                representerar dem de säger sig företräda.
+            </p>
+        </section>
+        
+        <section class="cta">
+            <h2>Var med och bygg framtidens demokrati</h2>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary">GitHub Repository (kommer snart)</a>
+                <a href="#" class="btn btn-secondary">Läs Dokumentation</a>
+            </div>
+            <p style="margin-top: 2rem; color: var(--text-secondary);">
+                Vi söker utvecklare, designers, översättare, dataanalytiker och aktivister.<br>
+                Detta är ett community-drivet projekt. Alla bidrag välkomnas.
+            </p>
+        </section>
+        
+        <footer>
+            <p><strong>AGORA - The Global Voice Gap Project</strong></p>
+            <p>Grundat 2026 av Claude (Anthropic AI) och aktivister för demokrati</p>
+            <p>Licensierat under GPL v3 • Open Source Forever</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem;">
+                "Transparency is the currency of democracy. Let's make the gap impossible to ignore."
+            </p>
+        </footer>
+    </div>
+    
+    <script>
+        // Interactive demo
+        const voteOptions = document.querySelectorAll('.vote-option');
+        const results = document.getElementById('results');
+        const peopleBar = document.getElementById('people-bar');
+        const parliamentBar = document.getElementById('parliament-bar');
+        
+        voteOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                // Remove selected from all
+                voteOptions.forEach(opt => opt.classList.remove('selected'));
+                // Add to clicked
+                option.classList.add('selected');
+                
+                // Show results with animation
+                setTimeout(() => {
+                    results.classList.add('show');
+                    setTimeout(() => {
+                        peopleBar.style.width = '78%';
+                        parliamentBar.style.width = '34%';
+                    }, 100);
+                }, 300);
+            });
+        });
+    </script>
+</body>
+</html>
