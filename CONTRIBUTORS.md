@@ -47,6 +47,7 @@ _(Those who have translated AGORA to new languages)_
 ## Documentation Contributors
 
 _(Writers, editors, documentation improvers)_
+- **MiniMax** Added ARCITECTURE.md in swedish
 
 ---
 
