@@ -34,42 +34,25 @@ Parliament Vote:  ███████░░░░░░░░░░░░░ 3
 GAP: 44% - The people's will was ignored.
 ```
 
-## 🏗️ Core Features (Roadmap)
+## 🏗️ Technical Architecture
 
-### Phase 1: MVP (Current)
-- [x] Landing page with vision
-- [x] Interactive demo visualization
-- [ ] Basic voting interface
-- [ ] One country (Sweden) as proof of concept
-- [ ] Simple gap visualization
+AGORA is designed to be **100% Free and Open Source Software (FOSS)** with **zero dependencies on Big Tech**.
 
-### Phase 2: Scale
-- [ ] 10+ countries supported
-- [ ] Automated parliamentary vote scraping
-- [ ] Advanced visualizations & charts
-- [ ] Public API for third parties
-- [ ] Mobile apps (iOS/Android)
+### Key Principles
+- **Decentralization**: No central server owns the data.
+- **Censorship Resistance**: Data replicated across a P2P network.
+- **Privacy-First**: Zero-knowledge proofs for vote validity without exposing identity.
 
-### Phase 3: Ecosystem
-- [ ] Community-proposed questions
-- [ ] Integration with encrypted messaging (Signal)
-- [ ] Tools for organizing based on results
-- [ ] Educational resources
-- [ ] Partnerships with NGOs and media
+For a detailed breakdown of our technical choices and principles, see **[ARCHITECTURE.md](ARCHITECTURE.md)**.
 
-## 🛠️ Technology Stack
+## 🗺️ Roadmap
 
-### Current (MVP)
-- **Frontend**: Vanilla HTML/CSS/JS (accessible, lightweight)
-- **Hosting**: GitHub Pages (free, decentralized)
-- **License**: GPL v3 (open source forever)
+- **Phase 0 (Current)**: Landing page & demo visualization.
+- **Phase 1**: Working prototype with SolidJS, PouchDB, and manual data entry.
+- **Phase 2**: Decentralized beta with Gun.js/OrbitDB P2P sync and multiple nodes.
+- **Phase 3**: Full decentralization with Zero-knowledge voting and Tor support.
 
-### Future Architecture
-- **Frontend**: React/TypeScript + React Native
-- **Backend**: Decentralized (Holochain/IPFS for censorship resistance)
-- **Verification**: Zero-knowledge proofs (vote validity without exposing identity)
-- **Database**: Distributed ledger for tamper-proof records
-- **APIs**: Automated scraping of parliamentary votes globally
+For more details on our development phases, see the **Roadmap** section in **[ARCHITECTURE.md](ARCHITECTURE.md)**.
 
 ## 🚀 Getting Started
 
@@ -99,24 +82,13 @@ python -m http.server 8000
 
 ## 🤝 Contributing
 
-**We need you!** AGORA is community-driven. We're looking for:
+**We need you!** AGORA is community-driven. We're looking for developers, designers, translators, data scientists, and activists.
 
-- 💻 **Developers**: Frontend, backend, mobile, security
-- 🎨 **Designers**: UI/UX, data visualization, branding
-- 🌐 **Translators**: This must work in every language
-- 📊 **Data Scientists**: Parliamentary vote scraping, verification systems
-- ⚖️ **Legal Experts**: Navigate data laws across countries
-- 📢 **Activists**: Spread it, use it, pressure with it
-
-### How to Contribute
-
-1. **Read** [CONTRIBUTING.md](CONTRIBUTING.md) (coming soon)
-2. **Check** [Issues](https://github.com/FredrikKindahl/agora/issues) for tasks
-3. **Fork** the repository
-4. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
-5. **Commit** your changes (`git commit -m 'Add amazing feature'`)
-6. **Push** to branch (`git push origin feature/amazing-feature`)
-7. **Open** a Pull Request
+1. **Read** [CONTRIBUTING.md](CONTRIBUTING.md)
+2. **Review** [STRUCTURE.md](STRUCTURE.md) to understand the project organization.
+3. **Check** [Issues](https://github.com/FredrikKindahl/agora/issues) for tasks.
+4. **Fork** the repository and create a feature branch.
+5. **Open** a Pull Request.
 
 ### Code of Conduct
 Be respectful. This project is about democracy and inclusion. Harassment, discrimination, or toxicity will not be tolerated.
@@ -125,60 +97,11 @@ Be respectful. This project is about democracy and inclusion. Harassment, discri
 
 This project is licensed under the **GNU General Public License v3.0** - see [LICENSE](LICENSE) file.
 
-Why GPL v3?
-- ✅ Anyone can use, study, and modify
-- ✅ All derivatives must remain open source
-- ✅ No one can close this down or make it proprietary
-- ✅ Protects the commons
-
-## 🌟 Success Metrics
-
-We don't measure success by downloads or users. We measure:
-
-- ❓ How many gaps become public knowledge?
-- 🔄 How many politicians change votes after seeing their gap?
-- 📝 How many laws change because visibility forced action?
-- 🌍 How many authoritarian regimes can't block it?
-
-## 🗺️ Roadmap
-
-**2026 Q1** (Now)
-- Launch landing page & demo
-- Build community
-- Define technical architecture
-
-**2026 Q2-Q3**
-- MVP with one country (Sweden)
-- Basic voting + parliamentary data
-- Mobile-friendly interface
-
-**2026 Q4**
-- Add 5-10 more countries
-- Automated scraping
-- Public API
-
-**2027+**
-- Global scale
-- Decentralized infrastructure
-- Integration ecosystem
-
 ## 🙏 Acknowledgments
 
 Founded by:
 - **Claude** (Anthropic AI) - Vision & Technical Architecture
 - **[Your Name]** - Founder & Community Lead
-
-Inspired by:
-- The global democracy movement
-- Open source communities everywhere
-- Everyone fighting for transparent governance
-
-## 📞 Contact & Community
-
-- **Website**: [Coming soon]
-- **GitHub**: [This repository]
-- **Discussions**: Use GitHub Discussions for questions
-- **Issues**: Report bugs or request features
 
 ---
 
@@ -186,4 +109,4 @@ Inspired by:
 
 **Status**: 🚧 Alpha - Under active development
 
-**Last Updated**: February 13, 2026
+**Last Updated**: March 19, 2026

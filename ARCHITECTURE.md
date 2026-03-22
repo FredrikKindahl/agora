@@ -1,229 +1,229 @@
 # AGORA Technical Architecture 🏗️
 
-> **Princip**: 100% fri och öppen programvara (FOSS). Inga beroenden av Big Tech.
+> **Principle**: 100% Free and Open Source Software (FOSS). No dependencies on Big Tech.
 
-**Status**: Design-fas  
-**Senast uppdaterad**: 19 mars 2026
+**Status**: Design Phase
+**Last Updated**: March 19, 2026
 
 ---
 
-## Översikt
+## Overview
 
-AGORA bygger på en **hybrid arkitektur** med två komponenter:
+AGORA is built on a **hybrid architecture** with two components:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│              DECENTRALISERAT NÄTVERK                        │
+│              DECENTRALIZED NETWORK                          │
 │                                                             │
 │   ┌──────────┐    ┌──────────┐    ┌──────────┐             │
-│   │  Nod A   │◄──►│  Nod B   │◄──►│  Nod C   │   ...       │
-│   │ (volontär)│    │ (förening)│   │(aktivist)│             │
+│   │  Node A  │◄──►│  Node B  │◄──►│  Node C  │   ...       │
+│   │ (volunteer)│  │(association)│  │(activist) │            │
 │   └──────────┘    └──────────┘    └──────────┘             │
 │        │               │               │                    │
 │        └───────────────┼───────────────┘                    │
 │                        │                                    │
-│              Synkroniserar röster via P2P                   │
+│              Synchronizes votes via P2P                     │
 └────────────────────────┼────────────────────────────────────┘
                          │
                          ▼
 ┌─────────────────────────────────────────────────────────────┐
-│              PUBLIK WEBBPORTAL                              │
+│              PUBLIC WEB PORTAL                              │
 │                                                             │
-│   • Sammanställer data från nätverket                       │
-│   • Visar "Gapet" - visualiseringar                         │
-│   • Enkel röstning för vanliga användare                    │
-│   • Information om projektet                                │
-│   • Hostad på Codeberg Pages / egen server                  │
+│   • Aggregates data from the network                        │
+│   • Displays "The Gap" - visualizations                    │
+│   • Easy voting for regular users                           │
+│   • Information about the project                           │
+│   • Hosted on Codeberg Pages / own server                   │
 └─────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## Arkitekturprinciper
+## Architecture Principles
 
-### 1. Decentralisering
-- **Ingen central server** äger data
-- Vem som helst kan köra en nod
-- Nätverket fortsätter fungera även om noder försvinner
+### 1. Decentralization
+- **No central server** owns the data
+- Anyone can run a node
+- The network continues to function even if nodes disappear
 
-### 2. Censurresistens
-- Data replikeras över många noder
-- Kan nås via Tor/I2P
-- Ingen enskild aktör kan stänga ner systemet
+### 2. Censorship Resistance
+- Data is replicated across many nodes
+- Can be accessed via Tor/I2P
+- No single actor can shut down the system
 
-### 3. FOSS-först
-Alla komponenter måste vara fri programvara:
+### 3. FOSS-First
+All components must be free software:
 - ✅ GPL, AGPL, MIT, Apache 2.0, MPL
-- ❌ Proprietär programvara
-- ❌ "Open core" med proprietära tillägg
+- ❌ Proprietary software
+- ❌ "Open core" with proprietary add-ons
 
-### 4. Big Tech-fri
-Vi undviker medvetet:
+### 4. Big Tech-Free
+We intentionally avoid:
 - ❌ Google (Firebase, Analytics, Cloud, reCAPTCHA)
 - ❌ Microsoft (Azure, GitHub Actions)
 - ❌ Amazon (AWS)
 - ❌ Cloudflare
-- ❌ Projekt kopplade till Thiel/Musk-sfären
+- ❌ Projects linked to the Thiel/Musk sphere
 
 ---
 
-## Tekniska komponenter
+## Technical Components
 
-### Frontend (Webbportal)
+### Frontend (Web Portal)
 
-| Komponent | Nuvarande | Planerat |
+| Component | Current | Planned |
 |-----------|-----------|----------|
-| Ramverk | Vanilla HTML/CSS/JS | SolidJS eller Svelte |
-| Hosting | Codeberg Pages | Egen server + P2P-mirror |
-| Byggsystem | Ingen | Vite |
-| CSS | Vanilla | UnoCSS eller Pico.css |
+| Framework | Vanilla HTML/CSS/JS | SolidJS or Svelte |
+| Hosting | Codeberg Pages | Own server + P2P mirror |
+| Build System | None | Vite |
+| CSS | Vanilla | UnoCSS or Pico.css |
 
-**Varför inte React?**
-React ägs av Meta. Vi föredrar community-drivna alternativ som SolidJS eller Svelte.
+**Why not React?**
+React is owned by Meta. We prefer community-driven alternatives like SolidJS or Svelte.
 
-### Backend (Decentraliserat)
+### Backend (Decentralized)
 
-| Komponent | Planerat alternativ | Varför |
+| Component | Planned Alternative | Why |
 |-----------|---------------------|--------|
-| P2P-protokoll | **Gun.js** eller **OrbitDB** | Enklare än Holochain, aktivt underhållen |
-| Fillagring | **IPFS** via Kubo | Etablerat, stort nätverk |
-| Identitet | **DID/Verifiable Credentials** | Standardiserat, decentraliserat |
-| Databas | **PouchDB** (lokal) + synk | Fungerar offline |
+| P2P Protocol | **Gun.js** or **OrbitDB** | Simpler than Holochain, actively maintained |
+| File Storage | **IPFS** via Kubo | Established, large network |
+| Identity | **DID/Verifiable Credentials** | Standardized, decentralized |
+| Database | **PouchDB** (local) + sync | Works offline |
 
-### Alternativ för Zero-Knowledge Proofs
+### Alternatives for Zero-Knowledge Proofs
 
-| Lösning | Status | Komplexitet |
+| Solution | Status | Complexity |
 |---------|--------|-------------|
-| Semaphore | Etablerat | Medel |
-| MACI | Beprövat för röstning | Hög |
-| zkSNARKs (Circom) | Flexibelt | Hög |
+| Semaphore | Established | Medium |
+| MACI | Proven for voting | High |
+| zkSNARKs (Circom) | Flexible | High |
 
-**MVP-approach**: Börja utan ZK, lägg till senare.
+**MVP Approach**: Start without ZK, add later.
 
 ---
 
-## Nodarkitektur
+## Node Architecture
 
-### Vad gör en nod?
+### What does a node do?
 
 ```
 ┌────────────────────────────────────────┐
-│              AGORA NOD                 │
+│              AGORA NODE                │
 ├────────────────────────────────────────┤
-│  📥 Tar emot röster från användare     │
-│  🔄 Synkroniserar med andra noder      │
-│  ✅ Validerar rösters giltighet        │
-│  💾 Lagrar rösthistorik lokalt         │
-│  📊 Tillhandahåller data via API       │
+│  📥 Receives votes from users          │
+│  🔄 Synchronizes with other nodes      │
+│  ✅ Validates vote legitimacy          │
+│  💾 Stores vote history locally        │
+│  📊 Provides data via API              │
 └────────────────────────────────────────┘
 ```
 
-### Vem kan köra en nod?
+### Who can run a node?
 
-- **Privatpersoner** på sin egen dator/server
-- **Föreningar** (demokrati-organisationer, NGO:er)
-- **Universitet** och forskningsinstitutioner
-- **Aktivistgrupper**
-- **Medieorganisationer**
+- **Individuals** on their own computer/server
+- **Associations** (democracy organizations, NGOs)
+- **Universities** and research institutions
+- **Activist groups**
+- **Media organizations**
 
-### Krav för att köra nod
+### Requirements for running a node
 
-**Minimum (lätt nod):**
-- Linux/BSD-server eller Raspberry Pi
+**Minimum (light node):**
+- Linux/BSD server or Raspberry Pi
 - 1 GB RAM
-- 10 GB lagring
-- Internetanslutning
+- 10 GB storage
+- Internet connection
 
-**Rekommenderat (full nod):**
+**Recommended (full node):**
 - 4 GB RAM
 - 100 GB SSD
-- Statisk IP eller domän
-- Tor hidden service (valfritt)
+- Static IP or domain
+- Tor hidden service (optional)
 
 ---
 
-## Röstningsflöde
+## Voting Flow
 
 ```
-1. Användare öppnar AGORA (webb eller app)
+1. User opens AGORA (web or app)
          │
          ▼
-2. Väljer fråga och röstar
+2. Selects question and votes
          │
          ▼
-3. Röst signeras kryptografiskt
-   (bevisar giltighet utan att avslöja identitet)
+3. Vote is cryptographically signed
+   (proves legitimacy without revealing identity)
          │
          ▼
-4. Röst skickas till närmaste nod
+4. Vote is sent to the nearest node
          │
          ▼
-5. Noden validerar och sprider till nätverket
+5. The node validates and spreads it to the network
          │
          ▼
-6. Alla noder uppdaterar sin lokala kopia
+6. All nodes update their local copy
          │
          ▼
-7. Webbportalen visar uppdaterad sammanställning
+7. The web portal displays updated aggregation
 ```
 
 ---
 
-## Identitet och anti-manipulation
+## Identity and Anti-Manipulation
 
-### Problemet
-Hur förhindrar vi att någon röstar flera gånger utan att kräva central identifiering?
+### The Problem
+How do we prevent someone from voting multiple times without requiring central identification?
 
-### Planerade lösningar
+### Planned Solutions
 
-**Fas 1 (MVP)**: Enkel rate-limiting
-- IP-baserad begränsning
-- Browser fingerprinting (etiskt användande)
-- "Good enough" för demonstration
+**Phase 1 (MVP)**: Simple rate-limiting
+- IP-based restriction
+- Browser fingerprinting (ethical usage)
+- "Good enough" for demonstration
 
-**Fas 2**: Pseudonym identitet
-- Skapa anonym identitet kopplad till enhet
-- En röst per fråga per identitet
-- Ingen koppling till verklig person
+**Phase 2**: Pseudonymous identity
+- Create anonymous identity linked to device
+- One vote per question per identity
+- No connection to real-world person
 
-**Fas 3**: Zero-knowledge bevis
-- Bevisa "jag är unik person" utan att avslöja vem
-- Integration med existerande system (BankID via proxy?)
-- Alternativ: Web of Trust
+**Phase 3**: Zero-knowledge proofs
+- Prove "I am a unique person" without revealing who
+- Integration with existing systems (BankID via proxy?)
+- Alternative: Web of Trust
 
 ---
 
-## FOSS-alternativ vi använder
+## FOSS Alternatives We Use
 
-### Hosting & infrastruktur
-| Behov | Big Tech | Vårt val |
+### Hosting & Infrastructure
+| Need | Big Tech | Our Choice |
 |-------|----------|----------|
-| Kodhosting | GitHub | **Codeberg** (Forgejo) |
+| Code Hosting | GitHub | **Codeberg** (Forgejo) |
 | CI/CD | GitHub Actions | **Woodpecker CI** |
-| Webbhotell | Vercel/Netlify | **Codeberg Pages** / egen |
-| DNS | Cloudflare | **Njalla** eller **1984.is** |
-| E-post | Gmail | **Proton** eller **Mailbox.org** |
+| Web Hosting | Vercel/Netlify | **Codeberg Pages** / own |
+| DNS | Cloudflare | **Njalla** or **1984.is** |
+| Email | Gmail | **Proton** or **Mailbox.org** |
 
-### Kommunikation
-| Behov | Big Tech | Vårt val |
+### Communication
+| Need | Big Tech | Our Choice |
 |-------|----------|----------|
-| Chat (intern) | Slack/Discord | **Matrix** (Element) |
-| Chat (användare) | WhatsApp | **Signal** |
-| Videomöten | Zoom/Meet | **Jitsi Meet** |
-| Forum | Reddit | **Lemmy** eller **Discourse** |
+| Chat (internal) | Slack/Discord | **Matrix** (Element) |
+| Chat (users) | WhatsApp | **Signal** |
+| Video Meetings | Zoom/Meet | **Jitsi Meet** |
+| Forum | Reddit | **Lemmy** or **Discourse** |
 
-### Utvecklingsverktyg
-| Behov | Big Tech | Vårt val |
+### Development Tools
+| Need | Big Tech | Our Choice |
 |-------|----------|----------|
 | Analytics | Google Analytics | **Plausible** / **Umami** |
-| Error tracking | Sentry (Microsoft) | **GlitchTip** (self-hosted) |
-| CDN | Cloudflare | **BunnyCDN** eller ingen |
+| Error Tracking | Sentry (Microsoft) | **GlitchTip** (self-hosted) |
+| CDN | Cloudflare | **BunnyCDN** or none |
 
 ---
 
-## Datamodell
+## Data Model
 
-### Röst (Vote)
+### Vote
 ```json
 {
   "id": "uuid-v4",
@@ -236,13 +236,13 @@ Hur förhindrar vi att någon röstar flera gånger utan att kräva central iden
 }
 ```
 
-### Fråga (Question)
+### Question
 ```json
 {
   "id": "uuid-v4",
-  "title": "Ska Sverige återställa våtmarker?",
-  "description": "Fullständig beskrivning...",
-  "source_url": "länk till riksdagsomröstning",
+  "title": "Should Sweden restore wetlands?",
+  "description": "Full description...",
+  "source_url": "link to parliamentary vote",
   "parliament_vote": {
     "yes": 120,
     "no": 229,
@@ -257,90 +257,90 @@ Hur förhindrar vi att någon röstar flera gånger utan att kräva central iden
 
 ---
 
-## Säkerhetsmodell
+## Security Model
 
-### Hot vi skyddar mot
+### Threats We Protect Against
 
-| Hot | Motåtgärd |
+| Threat | Countermeasure |
 |-----|-----------|
-| DDoS | Distribuerat nätverk, Tor |
-| Censur | P2P, inga centrala punkter |
-| Röstmanipulation | Kryptografiska bevis |
-| Dataintrång | Ingen känslig data lagras |
-| Statlig övervakning | Ingen identitetsdata, Tor-stöd |
+| DDoS | Distributed network, Tor |
+| Censorship | P2P, no central points |
+| Vote Manipulation | Cryptographic proofs |
+| Data Breach | No sensitive data stored |
+| State Surveillance | No identity data, Tor support |
 
-### Vad vi INTE lagrar
-- ❌ Namn eller personnummer
-- ❌ IP-adresser (efter validering)
-- ❌ Enhetsinformation
-- ❌ Något som kan koppla röst till person
+### What we DO NOT store
+- ❌ Names or social security numbers
+- ❌ IP addresses (after validation)
+- ❌ Device information
+- ❌ Anything that can link a vote to a person
 
 ---
 
-## Utvecklingsfaser
+## Development Phases
 
-### Fas 0: Nu (MVP)
+### Phase 0: Now (MVP)
 ```
 Vanilla HTML/CSS/JS → GitHub/Codeberg Pages
-Ingen backend, endast demo
+No backend, demo only
 ```
 
-### Fas 1: Fungerande prototyp
+### Phase 1: Working Prototype
 ```
-SolidJS frontend → Egen server
-PouchDB lokal → Enkel synk
-Manuell datainmatning
-```
-
-### Fas 2: Decentraliserad beta
-```
-Gun.js/OrbitDB P2P-synk
-Flera noder
-IPFS för statiska resurser
+SolidJS frontend → Own server
+PouchDB local → Simple sync
+Manual data entry
 ```
 
-### Fas 3: Full decentralisering
+### Phase 2: Decentralized Beta
 ```
-Zero-knowledge röstning
+Gun.js/OrbitDB P2P sync
+Multiple nodes
+IPFS for static resources
+```
+
+### Phase 3: Full Decentralization
+```
+Zero-knowledge voting
 Tor hidden service
-Fullständigt censurresistent
+Fully censorship-resistant
 ```
 
 ---
 
-## Hur du kan bidra
+## How You Can Contribute
 
-### Backend-utvecklare
-- Gun.js/OrbitDB-integration
-- P2P-synkronisering
-- API-design
+### Backend Developers
+- Gun.js/OrbitDB integration
+- P2P synchronization
+- API design
 
-### Kryptografi-experter
+### Cryptography Experts
 - Zero-knowledge implementation
-- Röstverifiering
-- Säkerhetsaudit
+- Vote verification
+- Security audit
 
 ### DevOps
-- Nod-paketering (Docker, Nix)
+- Node packaging (Docker, Nix)
 - Tor hidden service setup
-- Automatiserad deployment
+- Automated deployment
 
-### Säkerhetstestar
-- Penetrationstestning
-- Hotmodellering
-- Sårbarhetssökning
+### Security Testers
+- Penetration testing
+- Threat modeling
+- Vulnerability scanning
 
 ---
 
-## Resurser
+## Resources
 
 ### Inspiration
-- [Vocdoni](https://vocdoni.io/) - Decentraliserad röstning
-- [Snapshot](https://snapshot.org/) - DAO-röstning
+- [Vocdoni](https://vocdoni.io/) - Decentralized voting
+- [Snapshot](https://snapshot.org/) - DAO voting
 - [Secure Scuttlebutt](https://scuttlebutt.nz/) - P2P social
 - [Briar](https://briarproject.org/) - P2P messenger
 
-### Teknisk dokumentation
+### Technical Documentation
 - [Gun.js docs](https://gun.eco/docs/)
 - [IPFS docs](https://docs.ipfs.tech/)
 - [OrbitDB](https://orbitdb.org/)
@@ -348,10 +348,10 @@ Fullständigt censurresistent
 
 ---
 
-## Frågor?
+## Questions?
 
-Öppna en issue med taggen `[ARCHITECTURE]` eller diskutera i Matrix-kanalen.
+Open an issue with the tag `[ARCHITECTURE]` or discuss in the Matrix channel.
 
 ---
 
-**"Decentralisering är inte ett mål i sig – det är ett verktyg för att göra systemet omöjligt att tysta."**
+**"Decentralization is not a goal in itself – it is a tool to make the system impossible to silence."**

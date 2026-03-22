@@ -8,13 +8,14 @@ This document explains the organization of the AGORA repository.
 agora/
 ├── index.html              # Main landing page with demo
 ├── README.md               # Project overview & getting started
+├── ARCHITECTURE.md         # Technical architecture & principles
+├── STRUCTURE.md            # Repository organization (this file)
 ├── CONTRIBUTING.md         # How to contribute
 ├── CONTRIBUTORS.md         # Recognition of all contributors
 ├── LICENSE                 # GPL v3 license
 ├── .gitignore             # Git ignore rules
 └── docs/                   # Documentation (future)
     ├── ROADMAP.md         # Detailed roadmap
-    ├── ARCHITECTURE.md    # Technical architecture
     └── API.md             # API documentation (future)
 ```
 
@@ -23,22 +24,22 @@ agora/
 ```
 agora/
 ├── frontend/
-│   ├── web/               # Web application
+│   ├── web/               # Web application (SolidJS or Svelte)
 │   │   ├── src/
 │   │   ├── public/
 │   │   └── package.json
-│   └── mobile/            # React Native mobile apps
+│   └── mobile/            # Mobile apps (React Native)
 │       ├── ios/
 │       └── android/
 ├── backend/
-│   ├── api/               # REST API
+│   ├── p2p/               # Decentralized node logic (Gun.js/OrbitDB)
 │   ├── scraper/           # Parliamentary vote scrapers
-│   ├── verification/      # Vote verification system
-│   └── database/          # Database schemas
+│   ├── identity/          # DID/Verifiable Credentials & ZK Proofs
+│   └── database/          # Local storage (PouchDB) & schemas
 ├── infrastructure/
-│   ├── docker/            # Container configurations
-│   ├── deployment/        # Deployment scripts
-│   └── monitoring/        # Monitoring & logging
+│   ├── docker/            # Node packaging (Docker, Nix)
+│   ├── deployment/        # Tor hidden service & deployment scripts
+│   └── monitoring/        # Plausible/Umami analytics & GlitchTip
 ├── docs/
 │   ├── user-guides/       # User documentation
 │   ├── developer-guides/  # Developer documentation
@@ -56,21 +57,21 @@ agora/
 
 ### `/frontend`
 All user-facing applications:
-- **web/**: Main web application (React/TypeScript)
+- **web/**: Main web application (SolidJS or Svelte + Vite)
 - **mobile/**: iOS & Android apps (React Native)
 
 ### `/backend`
-Server-side code:
-- **api/**: REST API for frontend communication
+Core decentralized logic:
+- **p2p/**: P2P synchronization using Gun.js or OrbitDB
 - **scraper/**: Tools to fetch parliamentary voting data
-- **verification/**: Systems to ensure vote integrity
-- **database/**: Schemas and migrations
+- **identity/**: Systems for vote integrity (ZK proofs, DIDs)
+- **database/**: PouchDB for offline-first local storage
 
 ### `/infrastructure`
 Deployment & operations:
-- **docker/**: Containerization
-- **deployment/**: CI/CD, hosting configurations
-- **monitoring/**: Logs, metrics, alerts
+- **docker/**: Containerization and Nix expressions
+- **deployment/**: Tor hidden service, Codeberg Pages, CI/CD (Woodpecker)
+- **monitoring/**: Privacy-respecting analytics (Plausible) & error tracking
 
 ### `/docs`
 All documentation:
@@ -81,7 +82,7 @@ All documentation:
 ### `/tests`
 Automated testing:
 - **unit/**: Component-level tests
-- **integration/**: API & service tests
+- **integration/**: P2P & service tests
 - **e2e/**: Full user flow tests
 
 ### `/scripts`
