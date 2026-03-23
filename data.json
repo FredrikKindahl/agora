@@ -1,0 +1,212 @@
+[
+  {
+    "id": "F3B49294-A1A4-4C09-963E-4A8ED74A9D07",
+    "title": "Should Sweden restore wetlands to combat climate change?",
+    "description": "Proposal to aggressively fund the restoration of drained wetlands to increase carbon capture.",
+    "created_at": "2026-03-19 15:28:53",
+    "parliament_vote": {
+      "yes": 107,
+      "no": 93,
+      "abstain": 94,
+      "absent": 55
+    },
+    "people_vote": {
+      "yes": 44,
+      "no": 56
+    },
+    "parliament_percentage": {
+      "yes": 36,
+      "no": 32
+    },
+    "gap": 8
+  },
+  {
+    "id": "618357AA-0190-47DF-9919-78EED23F4AD4",
+    "title": "Implement stronger privacy laws for digital communications?",
+    "description": "A bill regarding the state's ability to intercept private digital messages without suspicion of severe crime.",
+    "created_at": "2026-03-19 15:28:53",
+    "parliament_vote": {
+      "yes": 149,
+      "no": 145,
+      "abstain": 0,
+      "absent": 55
+    },
+    "people_vote": {
+      "yes": 46,
+      "no": 54
+    },
+    "parliament_percentage": {
+      "yes": 51,
+      "no": 49
+    },
+    "gap": 5
+  },
+  {
+    "id": "C2271ACA-77BE-4D56-8EC5-1D81479E1EEC",
+    "title": "Increase funding for independent journalism?",
+    "description": "Proposal to provide state subsidies to local independent investigative journalism.",
+    "created_at": "2026-03-04 16:36:21",
+    "parliament_vote": {
+      "yes": 267,
+      "no": 15,
+      "abstain": 21,
+      "absent": 46
+    },
+    "people_vote": {
+      "yes": 50,
+      "no": 50
+    },
+    "parliament_percentage": {
+      "yes": 88,
+      "no": 5
+    },
+    "gap": 38
+  },
+  {
+    "id": "7B80E54E-49E8-457A-A49C-92D6923E231F",
+    "title": "Committee Report AU10, Point 9",
+    "description": "Parliamentary vote regarding: sakfrågan.",
+    "created_at": "2026-03-04 16:36:21",
+    "parliament_vote": {
+      "yes": 167,
+      "no": 94,
+      "abstain": 42,
+      "absent": 46
+    },
+    "people_vote": {
+      "yes": 58,
+      "no": 42
+    },
+    "parliament_percentage": {
+      "yes": 55,
+      "no": 31
+    },
+    "gap": 3
+  },
+  {
+    "id": "24315A72-DA70-49D3-9498-F15C5504F256",
+    "title": "Committee Report AU10, Point 13",
+    "description": "Parliamentary vote regarding: sakfrågan.",
+    "created_at": "2026-03-04 16:36:21",
+    "parliament_vote": {
+      "yes": 286,
+      "no": 17,
+      "abstain": 0,
+      "absent": 46
+    },
+    "people_vote": {
+      "yes": 47,
+      "no": 53
+    },
+    "parliament_percentage": {
+      "yes": 94,
+      "no": 6
+    },
+    "gap": 47
+  },
+  {
+    "id": "D51638C9-220A-42E0-8AA7-4B538F37E385",
+    "title": "Committee Report AU10, Point 15",
+    "description": "Parliamentary vote regarding: sakfrågan.",
+    "created_at": "2026-03-04 16:36:21",
+    "parliament_vote": {
+      "yes": 267,
+      "no": 36,
+      "abstain": 0,
+      "absent": 46
+    },
+    "people_vote": {
+      "yes": 58,
+      "no": 42
+    },
+    "parliament_percentage": {
+      "yes": 88,
+      "no": 12
+    },
+    "gap": 30
+  },
+  {
+    "id": "37EE0313-9B1F-490F-9664-0EF06439F532",
+    "title": "Committee Report AU9, Point 1",
+    "description": "Parliamentary vote regarding: sakfrågan.",
+    "created_at": "2026-02-25 16:29:46",
+    "parliament_vote": {
+      "yes": 172,
+      "no": 16,
+      "abstain": 115,
+      "absent": 46
+    },
+    "people_vote": {
+      "yes": 30,
+      "no": 70
+    },
+    "parliament_percentage": {
+      "yes": 57,
+      "no": 5
+    },
+    "gap": 27
+  },
+  {
+    "id": "39ABA811-18AD-4541-9F7A-8583CEBCF13E",
+    "title": "Committee Report AU9, Point 2",
+    "description": "Parliamentary vote regarding: sakfrågan.",
+    "created_at": "2026-02-25 16:29:46",
+    "parliament_vote": {
+      "yes": 48,
+      "no": 8,
+      "abstain": 40,
+      "absent": 18
+    },
+    "people_vote": {
+      "yes": 79,
+      "no": 21
+    },
+    "parliament_percentage": {
+      "yes": 50,
+      "no": 8
+    },
+    "gap": 29
+  },
+  {
+    "id": "69A28DCA-6F6E-4733-8EB2-F8C557D5FFB1",
+    "title": "Committee Report AU8, Point 1",
+    "description": "Parliamentary vote regarding: sakfrågan.",
+    "created_at": "2026-02-04 16:16:46",
+    "parliament_vote": {
+      "yes": 181,
+      "no": 92,
+      "abstain": 23,
+      "absent": 53
+    },
+    "people_vote": {
+      "yes": 53,
+      "no": 47
+    },
+    "parliament_percentage": {
+      "yes": 61,
+      "no": 31
+    },
+    "gap": 8
+  },
+  {
+    "id": "757580EB-1495-4CCE-9DAD-0E54B8C9346C",
+    "title": "Committee Report AU8, Point 2",
+    "description": "Parliamentary vote regarding: sakfrågan.",
+    "created_at": "2026-02-04 16:16:46",
+    "parliament_vote": {
+      "yes": 161,
+      "no": 21,
+      "abstain": 114,
+      "absent": 53
+    },
+    "people_vote": {
+      "yes": 50,
+      "no": 50
+    },
+    "parliament_percentage": {
+      "yes": 54,
+      "no": 7
+    },
+    "gap": 4
+  }
+]

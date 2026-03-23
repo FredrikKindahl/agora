@@ -5,20 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AGORA - The Global Voice Gap Project</title>
     <meta name="description" content="Making the distance between people's will and political action impossible to ignore.">
-    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Public+Sans:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
         
         :root {
-            --bg-dark: #0a0a0a;
-            --bg-card: #1a1a1a;
+            --bg-base: #050505;
             --text-primary: #ffffff;
-            --text-secondary: #a0a0a0;
-            --accent-cyan: #00d9ff;
+            --text-secondary: #94a3b8;
+            --accent-cyan: #00f0ff;
+            --accent-green: #00ff9d;
             --accent-red: #ff3366;
-            --accent-green: #00ff88;
-            --accent-yellow: #ffcc00;
-            --gap-color: #ff3366;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --glass-blur: blur(16px);
         }
         
         * {
@@ -28,581 +27,398 @@
         }
         
         body {
-            font-family: 'Public Sans', -apple-system, sans-serif;
-            background: var(--bg-dark);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-base);
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
         }
-        
-        /* Background grid effect */
-        body::before {
-            content: '';
+
+        /* Animated Mesh Gradient Background */
+        .bg-mesh {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            pointer-events: none;
-            z-index: 0;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 15% 50%, rgba(0, 240, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(0, 255, 157, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 50% 80%, rgba(255, 51, 102, 0.05) 0%, transparent 50%);
+            filter: blur(60px);
+            animation: breathe 10s ease-in-out infinite alternate;
+        }
+
+        @keyframes breathe {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.1); opacity: 1; }
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 0 2rem;
             position: relative;
-            z-index: 1;
         }
         
         /* Header */
         header {
-            padding: 3rem 0 1rem;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 4rem;
+            padding: 3rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
         
         .logo {
-            font-family: 'Archivo Black', sans-serif;
-            font-size: 4rem;
-            letter-spacing: -0.02em;
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
             background: linear-gradient(135deg, var(--accent-cyan), var(--accent-green));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
-            display: inline-block;
-            animation: fadeInDown 0.8s ease-out;
-        }
-        
-        .tagline {
-            font-size: 1.3rem;
-            color: var(--text-secondary);
-            margin-top: 0.5rem;
-            font-weight: 300;
-            animation: fadeInUp 0.8s ease-out 0.2s both;
         }
         
         /* Hero Section */
         .hero {
             margin: 4rem 0 6rem;
-            animation: fadeInUp 0.8s ease-out 0.4s both;
+            text-align: center;
         }
         
         .hero h1 {
-            font-family: 'Archivo Black', sans-serif;
-            font-size: 3rem;
+            font-family: 'Outfit', sans-serif;
+            font-size: 4rem;
+            font-weight: 800;
             line-height: 1.1;
-            margin-bottom: 2rem;
-            max-width: 900px;
-        }
-        
-        .hero h1 .highlight {
-            color: var(--accent-cyan);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
         }
         
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             color: var(--text-secondary);
-            max-width: 700px;
-            line-height: 1.8;
-            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto;
         }
         
-        /* Demo Section */
-        .demo-section {
-            background: var(--bg-card);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            padding: 3rem;
-            margin: 4rem 0;
-            border-radius: 4px;
-            animation: fadeInUp 0.8s ease-out 0.6s both;
-        }
-        
-        .demo-section h2 {
-            font-family: 'Archivo Black', sans-serif;
+        /* Polls Feed */
+        .feed-header {
+            font-family: 'Outfit', sans-serif;
             font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--accent-cyan);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
         
-        .demo-subtitle {
+        .live-pulse {
+            width: 12px; height: 12px;
+            background: var(--accent-red);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-red);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 51, 102, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(255, 51, 102, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 51, 102, 0); }
+        }
+
+        .poll-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .poll-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .poll-meta {
+            font-size: 0.85rem;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .poll-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+        
+        .poll-desc {
             color: var(--text-secondary);
             margin-bottom: 2rem;
             font-size: 1.1rem;
         }
         
-        .question-box {
-            background: rgba(0, 217, 255, 0.05);
-            border-left: 4px solid var(--accent-cyan);
-            padding: 1.5rem;
-            margin: 2rem 0;
-            font-size: 1.3rem;
-            font-weight: 600;
-        }
-        
-        .vote-container {
+        /* Voting Buttons */
+        .vote-actions {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin: 2rem 0;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
         }
         
-        .vote-option {
-            background: rgba(255, 255, 255, 0.03);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-radius: 4px;
-            text-align: center;
-        }
-        
-        .vote-option:hover {
-            border-color: var(--accent-cyan);
-            background: rgba(0, 217, 255, 0.1);
-            transform: translateY(-2px);
-        }
-        
-        .vote-option.selected {
-            border-color: var(--accent-green);
-            background: rgba(0, 255, 136, 0.1);
-        }
-        
-        .vote-option h3 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .vote-option p {
-            color: var(--text-secondary);
-        }
-        
-        /* Results */
-        .results {
-            margin-top: 3rem;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-        
-        .results.show {
-            opacity: 1;
-        }
-        
-        .result-item {
-            margin: 2rem 0;
-        }
-        
-        .result-label {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-        
-        .result-label .percentage {
-            font-size: 1.5rem;
-            font-family: 'Archivo Black', sans-serif;
-        }
-        
-        .result-bar {
-            height: 60px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-            border-radius: 4px;
-        }
-        
-        .result-fill {
-            height: 100%;
-            transition: width 1s ease-out;
-            display: flex;
-            align-items: center;
-            padding: 0 1rem;
+        .btn-vote {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: white;
+            padding: 1.2rem;
+            border-radius: 16px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
             font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
         }
         
-        .result-fill.people {
-            background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan));
+        .btn-vote:hover {
+            background: rgba(255,255,255,0.1);
+            transform: scale(1.02);
         }
         
-        .result-fill.parliament {
-            background: linear-gradient(90deg, var(--accent-red), #ff6600);
+        .btn-vote.yes:hover { border-color: var(--accent-green); color: var(--accent-green); }
+        .btn-vote.no:hover { border-color: var(--accent-red); color: var(--accent-red); }
+
+        .btn-vote.selected.yes {
+            background: rgba(0, 255, 157, 0.15);
+            border-color: var(--accent-green);
+            color: var(--accent-green);
         }
         
-        /* Gap Visualization */
-        .gap-alert {
-            background: linear-gradient(135deg, rgba(255, 51, 102, 0.2), rgba(255, 51, 102, 0.05));
-            border: 2px solid var(--gap-color);
-            padding: 2rem;
-            margin: 2rem 0;
-            border-radius: 4px;
-            text-align: center;
+        .btn-vote.selected.no {
+            background: rgba(255, 51, 102, 0.15);
+            border-color: var(--accent-red);
+            color: var(--accent-red);
+        }
+
+        /* Results Visualization */
+        .results-container {
+            display: none;
+            animation: slideDown 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
         }
         
-        .gap-alert h3 {
-            font-family: 'Archivo Black', sans-serif;
-            font-size: 2.5rem;
-            color: var(--gap-color);
-            margin-bottom: 0.5rem;
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        
-        .gap-alert p {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-        }
-        
-        /* Features */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 4rem 0;
-        }
-        
-        .feature {
-            background: var(--bg-card);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            border-radius: 4px;
-            animation: fadeInUp 0.8s ease-out both;
-        }
-        
-        .feature:nth-child(1) { animation-delay: 0.8s; }
-        .feature:nth-child(2) { animation-delay: 0.9s; }
-        .feature:nth-child(3) { animation-delay: 1s; }
-        
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .feature h3 {
-            font-family: 'Archivo Black', sans-serif;
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: var(--accent-cyan);
-        }
-        
-        .feature p {
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-        
-        /* Vision */
-        .vision {
-            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(0, 255, 136, 0.1));
-            border: 2px solid var(--accent-cyan);
-            padding: 3rem;
-            margin: 4rem 0;
-            border-radius: 4px;
-        }
-        
-        .vision h2 {
-            font-family: 'Archivo Black', sans-serif;
-            font-size: 2.5rem;
+
+        .bar-group {
             margin-bottom: 1.5rem;
         }
         
-        .vision p {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-        }
-        
-        /* CTA */
-        .cta {
-            text-align: center;
-            margin: 4rem 0;
-            padding: 3rem 0;
-        }
-        
-        .cta h2 {
-            font-family: 'Archivo Black', sans-serif;
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-        }
-        
-        .cta-buttons {
+        .bar-header {
             display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        .btn {
-            padding: 1rem 2rem;
-            font-size: 1.1rem;
-            font-weight: 700;
-            border: 2px solid;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            font-family: 'Public Sans', sans-serif;
-            border-radius: 4px;
-        }
-        
-        .btn-primary {
-            background: var(--accent-cyan);
-            color: var(--bg-dark);
-            border-color: var(--accent-cyan);
-        }
-        
-        .btn-primary:hover {
-            background: transparent;
-            color: var(--accent-cyan);
-            transform: translateY(-2px);
-        }
-        
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-primary);
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-        
-        .btn-secondary:hover {
-            border-color: var(--text-primary);
-            transform: translateY(-2px);
-        }
-        
-        /* Footer */
-        footer {
-            border-top: 2px solid rgba(255, 255, 255, 0.1);
-            padding: 3rem 0;
-            margin-top: 6rem;
-            text-align: center;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
             color: var(--text-secondary);
         }
         
-        footer p {
-            margin: 0.5rem 0;
+        .bar-header span.pct {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            color: white;
+        }
+
+        .bar-track {
+            height: 12px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
         }
         
-        footer a {
-            color: var(--accent-cyan);
-            text-decoration: none;
+        .bar-fill {
+            height: 100%;
+            width: 0%;
+            border-radius: 6px;
+            transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1);
         }
         
-        footer a:hover {
-            text-decoration: underline;
+        .bar-fill.people { background: linear-gradient(90deg, var(--accent-cyan), var(--accent-green)); }
+        .bar-fill.parliament { background: linear-gradient(90deg, #ff6a00, var(--accent-red)); }
+
+        .gap-alert {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-radius: 16px;
+            background: rgba(255, 51, 102, 0.05);
+            border: 1px solid rgba(255, 51, 102, 0.2);
+            text-align: center;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.8s;
         }
         
-        /* Animations */
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .gap-alert.show {
+            opacity: 1;
+            transform: scale(1);
         }
         
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .gap-alert h4 {
+            font-family: 'Outfit', sans-serif;
+            color: var(--accent-red);
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
         }
         
-        /* Responsive */
-        @media (max-width: 768px) {
-            .logo {
-                font-size: 2.5rem;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .vote-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .demo-section {
-                padding: 2rem 1.5rem;
-            }
-            
-            .features {
-                grid-template-columns: 1fr;
-            }
+        .gap-alert p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        /* Loading State */
+        .loader {
+            text-align: center;
+            padding: 4rem;
+            color: var(--text-secondary);
         }
     </style>
 </head>
 <body>
+    <div class="bg-mesh"></div>
+    
     <div class="container">
         <header>
             <div class="logo">AGORA</div>
-            <div class="tagline">The Global Voice Gap Project</div>
+            <a href="https://github.com/FredrikKindahl/agora" style="color: white; text-decoration: none; font-weight: 600; border: 1px solid rgba(255,255,255,0.2); padding: 0.5rem 1rem; border-radius: 50px; transition: 0.3s;" onmouseover="this.style.background='white'; this.style.color='black'" onmouseout="this.style.background='transparent'; this.style.color='white'">GitHub</a>
         </header>
-        
+
         <section class="hero">
-            <h1>
-                Making the distance between <span class="highlight">people's will</span> and 
-                <span class="highlight">political action</span> impossible to ignore.
-            </h1>
-            <p>
-                A transparent, decentralized platform where anyone can vote on policy questions, 
-                see real-time results globally, and compare them directly to how their actual 
-                representatives vote. The gap becomes visible, measurable, and undeniable.
-            </p>
+            <h1>The truth<br>in plain sight.</h1>
+            <p>Decentralized polling that reveals the gap between what people want and how politicians vote. Powered by real data from the Swedish Parliament API.</p>
         </section>
-        
-        <section class="demo-section">
-            <h2>See How It Works</h2>
-            <p class="demo-subtitle">This is a demo with fictional data to show the concept:</p>
-            
-            <div class="question-box">
-                Should governments invest in renewable energy to combat climate change and reduce carbon emissions?
-            </div>
-            
-            <div class="vote-container">
-                <div class="vote-option" data-vote="yes">
-                    <h3>✓ YES</h3>
-                    <p>Invest in renewable energy</p>
-                </div>
-                <div class="vote-option" data-vote="no">
-                    <h3>✗ NO</h3>
-                    <p>Keep current policies</p>
-                </div>
-            </div>
-            
-            <div class="results" id="results">
-                <div class="result-item">
-                    <div class="result-label">
-                        <span>THE PEOPLE'S VOICE</span>
-                        <span class="percentage">78%</span>
-                    </div>
-                    <div class="result-bar">
-                        <div class="result-fill people" style="width: 0%" id="people-bar">
-                            78% support investment
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="result-item">
-                    <div class="result-label">
-                        <span>PARLIAMENT'S DECISION</span>
-                        <span class="percentage">34%</span>
-                    </div>
-                    <div class="result-bar">
-                        <div class="result-fill parliament" style="width: 0%" id="parliament-bar">
-                            34% voted yes
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="gap-alert">
-                    <h3>GAP: 44%</h3>
-                    <p>The people's will was ignored. This must become visible.</p>
-                </div>
-            </div>
-        </section>
-        
-        <section class="features">
-            <div class="feature">
-                <div class="feature-icon">🌍</div>
-                <h3>Global & Transparent</h3>
-                <p>
-                    Open source code that everyone can inspect. Decentralized to resist censorship. 
-                    No one can shut it down or manipulate the results.
-                </p>
-            </div>
-            
-            <div class="feature">
-                <div class="feature-icon">📊</div>
-                <h3>Visualize the Gap</h3>
-                <p>
-                    See directly how your representatives vote compared to what the people want. 
-                    Historical data shows patterns over time.
-                </p>
-            </div>
-            
-            <div class="feature">
-                <div class="feature-icon">🔓</div>
-                <h3>FOSS & Decentralized</h3>
-                <p>
-                    Completely open source (GPL v3). No one owns it. Works in dictatorships. 
-                    Community-driven development.
-                </p>
-            </div>
-        </section>
-        
-        <section class="vision">
-            <h2>The Vision</h2>
-            <p>
-                Democracy is built on the principle that representatives listen to the people. But when the gap between 
-                what people want and what politicians do is invisible, accountability disappears.
-            </p>
-            <p>
-                AGORA makes this gap visible. Not to create conflict, but to create 
-                accountability. When everyone can see the difference between public will and actual 
-                policy, it becomes impossible to ignore.
-            </p>
-            <p>
-                This is a tool for democratic empowerment. For activists. For journalists. 
-                For citizens who want their voice heard. For a world where those in power actually 
-                represent those they claim to serve.
-            </p>
-        </section>
-        
-        <section class="cta">
-            <h2>Help Build the Future of Democracy</h2>
-            <div class="cta-buttons">
-                <a href="https://github.com/FredrikKindahl/agora" class="btn btn-primary">GitHub Repository</a>
-                <a href="#" class="btn btn-secondary">Read Documentation</a>
-            </div>
-            <p style="margin-top: 2rem; color: var(--text-secondary);">
-                We're looking for developers, designers, translators, data analysts, and activists.<br>
-                This is a community-driven project. All contributions are welcome.
-            </p>
-        </section>
-        
-        <footer>
-            <p><strong>AGORA - The Global Voice Gap Project</strong></p>
-            <p>Founded 2026 by Claude (Anthropic AI) and Fredrik Kindahl</p>
-            <p>Licensed under GPL v3 • Open Source Forever</p>
-            <p style="margin-top: 1rem; font-size: 0.9rem;">
-                "Transparency is the currency of democracy. Let's make the gap impossible to ignore."
-            </p>
-        </footer>
+
+        <div class="feed-header">
+            <div class="live-pulse"></div>
+            <h2>Live Feed</h2>
+        </div>
+
+        <div id="polls-feed">
+            <div class="loader">Loading decentralized data...</div>
+        </div>
     </div>
-    
+
     <script>
-        // Interactive demo
-        const voteOptions = document.querySelectorAll('.vote-option');
-        const results = document.getElementById('results');
-        const peopleBar = document.getElementById('people-bar');
-        const parliamentBar = document.getElementById('parliament-bar');
-        
-        voteOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                // Remove selected from all
-                voteOptions.forEach(opt => opt.classList.remove('selected'));
-                // Add to clicked
-                option.classList.add('selected');
+        document.addEventListener('DOMContentLoaded', async () => {
+            const feedContainer = document.getElementById('polls-feed');
+            
+            try {
+                // To support local file viewing, we use a simple fetch, but fallback text if it fails
+                const response = await fetch('data.json');
+                if (!response.ok) throw new Error("Failed to load data");
+                const polls = await response.json();
                 
-                // Show results with animation
-                setTimeout(() => {
-                    results.classList.add('show');
-                    setTimeout(() => {
-                        peopleBar.style.width = '78%';
-                        parliamentBar.style.width = '34%';
-                    }, 100);
-                }, 300);
-            });
+                feedContainer.innerHTML = ''; // Clear loader
+                
+                polls.forEach(poll => {
+                    // Create card element
+                    const card = document.createElement('div');
+                    card.className = 'poll-card';
+                    
+                    // Format date
+                    const date = new Date(poll.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+                    
+                    card.innerHTML = `
+                        <div class="poll-meta">Vote ID: ${poll.id.substring(0,8)} • ${date}</div>
+                        <h3 class="poll-title">${poll.title}</h3>
+                        <p class="poll-desc">${poll.description}</p>
+                        
+                        <div class="vote-actions">
+                            <button class="btn-vote yes">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                YES
+                            </button>
+                            <button class="btn-vote no">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                NO
+                            </button>
+                        </div>
+                        
+                        <div class="results-container">
+                            <div class="bar-group">
+                                <div class="bar-header">
+                                    <span>PEOPLE'S VOTE</span>
+                                    <span class="pct">${poll.people_vote.yes}% YES</span>
+                                </div>
+                                <div class="bar-track">
+                                    <div class="bar-fill people" data-width="${poll.people_vote.yes}%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="bar-group">
+                                <div class="bar-header">
+                                    <span>PARLIAMENT'S VOTE</span>
+                                    <span class="pct">${poll.parliament_percentage.yes}% YES</span>
+                                </div>
+                                <div class="bar-track">
+                                    <div class="bar-fill parliament" data-width="${poll.parliament_percentage.yes}%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="gap-alert">
+                                <h4>THE GAP: ${poll.gap}%</h4>
+                                <p>The difference between public will and political action.</p>
+                            </div>
+                        </div>
+                    `;
+                    
+                    // Add interactivity
+                    const btns = card.querySelectorAll('.btn-vote');
+                    const results = card.querySelector('.results-container');
+                    const fills = card.querySelectorAll('.bar-fill');
+                    const gapAlert = card.querySelector('.gap-alert');
+                    
+                    btns.forEach(btn => {
+                        btn.addEventListener('click', () => {
+                            // Only allow voting once for demo
+                            if(results.style.display === 'block') return;
+                            
+                            btns.forEach(b => b.classList.remove('selected'));
+                            btn.classList.add('selected');
+                            
+                            // Show results
+                            results.style.display = 'block';
+                            
+                            // Trigger animations next frame
+                            setTimeout(() => {
+                                fills.forEach(fill => {
+                                    fill.style.width = fill.getAttribute('data-width');
+                                });
+                                gapAlert.classList.add('show');
+                            }, 50);
+                        });
+                    });
+                    
+                    feedContainer.appendChild(card);
+                });
+                
+            } catch (err) {
+                feedContainer.innerHTML = `<div class="loader">
+                    <p style="color:var(--accent-red);margin-bottom:1rem;">Error loading network data.</p>
+                    <p>If you are opening this file locally directly in the browser, you need to use a local web server (e.g. <code>npx serve</code> or <code>python -m http.server</code>) so it can fetch the data.json file.</p>
+                </div>`;
+                console.error(err);
+            }
         });
     </script>
 </body>
